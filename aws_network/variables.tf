@@ -1,7 +1,7 @@
 # Default tags
 variable "default_tags" {
   default = {
-    "Owner" = "Irina"
+    "Owner" = "poonam"
     "App"   = "Web"
   }
   type        = map(any)
@@ -10,7 +10,7 @@ variable "default_tags" {
 
 # Name prefix
 variable "prefix" {
-  default     = "week4"
+  default     = "dev"
   type        = string
   description = "Name prefix"
 }
@@ -30,7 +30,7 @@ variable "vpc_cidr" {
 
 # Variable to signal the current environment 
 variable "env" {
-  default     = "test"
+  default     = "dev"
   type        = string
   description = "Deployment Environment"
 }
