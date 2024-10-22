@@ -78,3 +78,11 @@ resource "aws_route_table_association" "public_routes" {
   route_table_id = aws_route_table.public_subnets.id
   subnet_id      = aws_subnet.public_subnet[count.index].id
 }
+
+module "vpc-dev" {
+  source             = "git@github.com:agarwalp/AWS_Terraform-Automation.git"
+  vpc_cidr_block     = var.vpc_cidr  # Update to match the module's expected variable name
+  public_subnet_cidrs = var.public_subnet_cidrs
+  name_prefix        = var.prefix    # Change 'prefix' if the module uses 'name_prefix'
+  tags               = var.default_tags  # Use 'tags' if the module uses this instead of 'default_tags'
+}
