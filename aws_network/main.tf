@@ -76,14 +76,15 @@ resource "aws_route_table" "public_subnets" {
 resource "aws_route_table_association" "public_routes" {
   count          = length(aws_subnet.public_subnet[*].id)
   route_table_id = aws_route_table.public_subnets.id
-  subnet_id      = aws_subnet.public_subnet[count.index].id
-}
+  subnet_id      = aws_subnet.public_subnet[count.index].id 
+}  
+
+#create custom vpc with terraform module 
 
 module "vpc-dev" {
   source             = "git@github.com:agarwalp/AWS_Terraform-Automation.git"
-  vpc_cidr_block     = var.vpc_cidr          # Update to match module's expected variable name
-  subnet_cidrs       = var.public_subnet_cidrs
-  name_prefix        = var.prefix            # Adjust 'prefix' to 'name_prefix'
-  tags               = var.default_tags      # Adjust 'default_tags' to 'tags'
+  vpc_cidr           = var.vpc_cidr
+  public_subnet_cidrs = var.public_subnet_cidrs
+  prefix             = var.prefix
+  default_tags       = var.default_tags
 }
-
